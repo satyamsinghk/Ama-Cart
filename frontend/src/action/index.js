@@ -43,7 +43,7 @@ export const placeOrderHandler = (callback) => {
         });
       }
       const response = await axios.post(
-        `https://dummy-store-items-default-rtdb.firebaseio.com/orders/${auth.localId}.json?auth=${auth.idToken}`,
+        `https://ama-cart-default-rtdb.firebaseio.com/orders/${auth.localId}.json?auth=${auth.idToken}`,
         {
           ...cart,
         }

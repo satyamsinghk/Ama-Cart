@@ -169,3 +169,14 @@ header {
       }
 }
 
+
+@media (max-width: 768px){
+    .nav-brand{
+        a, button {
+           span{
+            font-size:0px;
+            font-weight:0px;
+           }
+        }
+    }
+}

@@ -91,3 +91,45 @@ button.cart-add {
         padding: 0 16px;
     }
 }
+@media (max-width: 768px) {
+  .product-list {
+    padding: 16px 32px;
+    width: 100%;
+    min-height: 100vh;
+
+    &--wrapper {
+        display: flex;
+        padding-left: 40px;
+        flex-wrap: wrap;
+    }
+}
+
+.item-card {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+    padding: 0;
+    width: 220px;
+    margin: 16px;
+    border: 1px solid rgba($color: $black, $alpha: 0.1);
+    border-radius: 4px;
+
+    &__information {
+        padding: 6px 12px;
+        margin-top: 12px;
+
+        .title {
+            text-overflow: ellipsis;
+            font-size: 14px;
+            color: rgba($color: $black, $alpha: 0.8);
+            white-space: nowrap;
+            overflow-x: hidden;
+
+            h3 {
+                margin: 4px 0 8px;
+            }
+        }
+    }
+}
+}

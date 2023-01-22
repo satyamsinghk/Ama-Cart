@@ -57,8 +57,6 @@ const Header = () => {
           </button>
         </>
       )}
-      {/* <button className="login-btn" onClick={()=>navigate("/login")}>Login</button>
-      <button className="login-btn" onClick={()=>navigate("/signup")}>Signup</button> */}
       <Cart />
     </header>
   );
