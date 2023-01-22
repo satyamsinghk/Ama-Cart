@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import {
   addItemHandler,
   removeItemHandler,
-  clearCartHandler,
+  // clearCartHandler,
+  placeOrderHandler,
 } from "../../action/index.js";
 // import { Modal } from "stream-chat-react";
 import Modal from "../UI/Modal";
@@ -13,6 +14,7 @@ import { useSelector, useDispatch } from "react-redux";
 function Cart() {
   const [showModal, setShowModal] = useState(false);
   const [orderModal, setOrderModal] = useState(false);
+  const [orderId, setOrderId] = useState("");
   const items = useSelector((state) => state.cart.items);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   const dispatch = useDispatch();
@@ -23,7 +25,7 @@ function Cart() {
 
   const handleOrderModal = () => {
     setShowModal(false);
-    dispatch(clearCartHandler());
+    // dispatch(clearCartHandler());
     setOrderModal((previousState) => !previousState);
   };
 
@@ -34,6 +36,24 @@ function Cart() {
   //     dispatch(removeItemHandler(item));
   //   }
   // };
+
+  const orderHandler = () => {
+   
+    // dispatch(clearCartHandler())
+    dispatch(
+      placeOrderHandler((response) => {
+        if(response.error){
+          alert(response.data.error || "Some error occurred, Please try again")
+        }else{
+          setOrderId(response.data.name);
+          setShowModal(false);
+          setOrderModal((previousState) => !previousState);
+        }
+      })
+    );
+   
+   
+  };
 
   const dispatchEvents = (type, item) => {
     if (type === 1) {
@@ -100,14 +120,14 @@ function Cart() {
                     <span style={{ marginLeft: "4px" }}>INR</span>
                   </h4>
                 </div>
-                <button onClick={handleOrderModal}>Order Now</button>
+                <button onClick={orderHandler}>Order Now</button>
               </div>
             )}
           </div>
         </Modal>
       )}
       {orderModal && (
-        <OrderSuccessModal onclose={handleOrderModal}></OrderSuccessModal>
+        <OrderSuccessModal orderId={orderId} onclose={handleOrderModal}></OrderSuccessModal>
       )}
     </>
   );

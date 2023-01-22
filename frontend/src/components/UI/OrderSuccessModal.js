@@ -2,7 +2,7 @@ import React from "react";
 import Modal from "./Modal";
 import OrderSuccessImage from "../../assets/icons/order_success.svg";
 
-function OrderSuccessModal({ onclose }) {
+function OrderSuccessModal({ onclose,orderId }) {
   return (
     <Modal onclose={onclose}>
       <div className="order-container">
@@ -10,7 +10,7 @@ function OrderSuccessModal({ onclose }) {
           <img src={OrderSuccessImage} alt="Success" className="img-fluid" />
           <div className="message">
             <h1>Order Successfully Placed!</h1>
-            <span>OrderID #2f45k866</span>
+            <span>OrderID #{orderId}</span>
           </div>
         </div>
       </div>

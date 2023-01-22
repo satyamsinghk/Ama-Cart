@@ -1,11 +1,17 @@
 import Cart from "../Cart";
-import  SearchBox  from "../UI/Search.js";
+import SearchBox from "../UI/Search.js";
 import { useNavigate } from "react-router-dom";
+import { useSelector,useDispatch } from "react-redux";
+import { logout } from "../../action/auth.js";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const authState = useSelector((state) => state.auth);
+  const dispatch = useDispatch()
 
-  const navigate=useNavigate()
-
+  const logoutHandler = () => {
+      dispatch(logout())
+  }
 
   return (
     <header>
@@ -33,11 +39,27 @@ const Header = () => {
         </a>
       </div>
       <div className="searchBox-container">
-       <SearchBox/>
+        <SearchBox />
       </div>
-      <button className="login-btn" onClick={()=>navigate("/login")}>Login</button>
-      <button className="login-btn" onClick={()=>navigate("/signup")}>Signup</button>
-      <Cart  />
+      {authState && authState.idToken ? (
+        <div className="user-actions">
+                        <button title="User Profile" className="material-icons">User Account</button>
+                        <button onClick={logoutHandler} title="Logout" className="logout-btn">Logout</button>
+                    </div>
+      ) : (
+        <>
+          {" "}
+          <button className="login-btn" onClick={() => navigate("/login")}>
+            Login
+          </button>
+          <button className="login-btn" onClick={() => navigate("/signup")}>
+            Signup
+          </button>
+        </>
+      )}
+      {/* <button className="login-btn" onClick={()=>navigate("/login")}>Login</button>
+      <button className="login-btn" onClick={()=>navigate("/signup")}>Signup</button> */}
+      <Cart />
     </header>
   );
 };
