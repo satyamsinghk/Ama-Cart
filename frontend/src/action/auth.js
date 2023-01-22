@@ -1,13 +1,13 @@
 import axios from "axios";
 
-// const BASE_URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key'
-// const API_KEY = 'AIzaSyDk7Dyx8EHd_jy1lyDK5ND-dXKQMZ8z5N0'
+const BASE_URL = 'https://identitytoolkit.googleapis.com/v1/'
+const API_KEY = 'AIzaSyDk7Dyx8EHd_jy1lyDK5ND-dXKQMZ8z5N0'
 
 export const signupWithEmailAndPassword = (details, callback) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDk7Dyx8EHd_jy1lyDK5ND-dXKQMZ8z5N0`,
+        `${BASE_URL}accounts:signUp?key=${API_KEY}`,
         {
           email: details.email,
           password: details.password,
@@ -35,7 +35,7 @@ export const loginWithEmailAndPassword = (details, callback) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDk7Dyx8EHd_jy1lyDK5ND-dXKQMZ8z5N0
+        `${BASE_URL}accounts:signInWithPassword?key=${API_KEY}
             `,
         {
           email: details.email,
@@ -66,7 +66,7 @@ export const checkIsLoggedIn = (callback) => {
         return;
       }
       const response = await axios.post(
-        `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDk7Dyx8EHd_jy1lyDK5ND-dXKQMZ8z5N0`,
+        `${BASE_URL}accounts:lookup?key=${API_KEY}`,
         {
           idToken: token,
         }
