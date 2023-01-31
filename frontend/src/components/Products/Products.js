@@ -28,8 +28,8 @@ const Products = () => {
         }
 
         const response = await axios.get(
-          `https://dummy-store-items-default-rtdb.firebaseio.com/${slug}`
-          // `https://dummy-store-items-default-rtdb.firebaseio.com/products-category-1.json`
+         `https://ama-cart-default-rtdb.firebaseio.com/${slug}`
+          
         );
 
         const data = response.data;
